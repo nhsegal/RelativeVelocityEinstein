@@ -27,14 +27,24 @@ function draw() {
 function createCar() {
   let positionX = width/2;
   let positionY = height/2;
-  let velocityX = 0.5;
+  let velocityX = -0.1;
   let sizeX = 195;
   let sizeY = 100; 
   let angle = 0;
 
+
   const display = () => {
-    image(car_img, positionX, positionY, sizeX, sizeY);
-    ellipse(positionX+ sizeX*.32, positionY + sizeY*.15, 10, 10)
+    push()
+    if (velocityX){
+      scale(velocityX/abs(velocityX), 1)
+      image(car_img, (velocityX/abs(velocityX))*positionX, positionY, sizeX, sizeY);
+    } 
+    else {
+      image(car_img, positionX, positionY, sizeX, sizeY);
+    }
+   
+
+    pop()
 
     push();
     translate(positionX - sizeX*.314, positionY + sizeY*.172)
