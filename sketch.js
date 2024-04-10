@@ -1,6 +1,9 @@
 let car_img;
 let wheel_img;
 let car;
+let resetButton;
+let carVelocitySlider;
+
 
 // Load the image.
 function preload() {
@@ -14,11 +17,21 @@ function setup() {
   background(220);
   imageMode(CENTER);
   car = createCar();
-  
+  resetButton = createButton('Reset');
+  resetButton.position(0, 100);
+  resetButton.mousePressed(car.reset);
+
+   // Create a slider and place it at the top of the canvas.
+   carVelocitySlider = createSlider(-20, 20);
+   carVelocitySlider.position(10, 10);
+   carVelocitySlider.size(80);
+   describe('A dark gray square with a range slider at the top.');
+ 
 }
 
 function draw() {
   background(220);
+  car.setVelocity( carVelocitySlider.value()/10);
   car.move()
   car.display()
 
@@ -32,6 +45,15 @@ function createCar() {
   let sizeY = 100; 
   let angle = 0;
 
+  const reset = () => {
+    positionX = width/2;
+    velocityX = 0;
+    carVelocitySlider.value(0);
+  }
+
+  const setVelocity = (val) => {
+    velocityX = val;
+  }
 
   const display = () => {
     push()
@@ -42,8 +64,6 @@ function createCar() {
     else {
       image(car_img, positionX, positionY, sizeX, sizeY);
     }
-   
-
     pop()
 
     push();
@@ -67,7 +87,8 @@ function createCar() {
     angle = angle + .0003*sizeX*velocityX;
   }
 
-  return { display, move, angle}
+  return { display, move, reset, setVelocity}
     
   }
+
 
