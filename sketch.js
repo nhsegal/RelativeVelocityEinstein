@@ -27,7 +27,7 @@ function draw() {
 function createCar() {
   let positionX = width/2;
   let positionY = height/2;
-  let velocityX = -0.1;
+  let velocityX = -1.0;
   let sizeX = 195;
   let sizeY = 100; 
   let angle = 0;
@@ -47,17 +47,15 @@ function createCar() {
     pop()
 
     push();
-    translate(positionX - sizeX*.314, positionY + sizeY*.172)
+    translate(positionX - sizeX*.31, positionY + sizeY*0.16)
     rotate(angle);
-    translate(-positionX + sizeX*.314, -positionY - sizeY*.172)
-    image(wheel_img, positionX, positionY, sizeX, sizeY);
+    image(wheel_img, 0, 0, .2*sizeX, .2*sizeX);
     pop();
     
     push();
-    translate(positionX + sizeX*.314, positionY + sizeY*.172)
+    translate(positionX + sizeX*.314, positionY + sizeY*.16)
     rotate(angle);
-    translate(-positionX + sizeX*.314, -positionY - sizeY*.172)
-    image(wheel_img, positionX, positionY, sizeX, sizeY);
+    image(wheel_img, 0, 0, .2*sizeX, .2*sizeX);
     pop();
 
 

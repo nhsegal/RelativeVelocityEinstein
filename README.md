@@ -1,2 +1,3 @@
 # RelativeVelocity
-A replica of Michael Freeman's relativty velocity Desmos thing
+A replica of Michael Freeman's relativty velocity Desmos thing.
+https://afreeparticle.com/conveyorcar1d.html?fbclid=IwAR1oSnI8jmxAkx603rDmL4d7aewM9sC-99-J8hvtkmf-VZUtyR0d2SRjfrw_aem_ATVfvdZHoLIQ_eBLrzho54MtE5PIiW2cvlPbgAyvYJSPkUl1qnKdE4BYgz_SDIto9CtmKdsJfijltPNotbhEfR4O
