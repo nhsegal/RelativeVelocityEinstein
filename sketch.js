@@ -25,7 +25,10 @@ function setup() {
   belt = createConveyorbelt();
   resetButton = createButton('Reset');
   resetButton.position(width/2 - 50, 4*height/5);
-  resetButton.mousePressed(car.reset);
+  resetButton.mousePressed(()=> {
+    car.reset()
+    belt.reset()
+  });
 
    // Create a slider and place it at the top of the canvas.
    carVelocitySlider = createSlider(-20, 20);
@@ -45,8 +48,9 @@ function setup() {
 
 function draw() {
   background(255);
-  car.setVelocity( carVelocitySlider.value()/10);
+  car.setVelocity( carVelocitySlider.value()/10 + beltVelocitySlider.value()/10);
   belt.setVelocity( beltVelocitySlider.value()/10);
+  car.setSpin(carVelocitySlider.value()/10 )
   car.move();
   belt.move();
  
@@ -73,6 +77,9 @@ function createCar() {
     velocityX = val;
   }
 
+  const setSpin = (val) => {
+    spinRate = val
+  }
   const display = () => {
     push()
     if (velocityX){
@@ -101,17 +108,17 @@ function createCar() {
   }
 
   const move = () => {
-    positionX = positionX + velocityX;
-    angle = angle + .0003*sizeX*velocityX;
+     positionX = positionX + velocityX;
+     angle = angle + .0003*sizeX*(spinRate);
   }
 
-  return { display, move, reset, setVelocity}
+  return { display, move, reset, setVelocity, setSpin}
     
   }
 
 function createConveyorbelt() {
   let positionX = width/2;
-  let velocityX = -1.0;
+  let velocityX = 0;
   let lineNumber = 100;
   let spacing = 80;
 
@@ -122,11 +129,11 @@ function createConveyorbelt() {
     push()
     translate(positionX, height/2)
     rect(0, height/12, width*2, height/6)
-  
+
     for (let i = -lineNumber/2; i < lineNumber/2; i++){
         noStroke()
         fill(0);
-        text(`${i*10} cm`, spacing*2*i-25, height/6 + 18);
+        text(`${i*10} cm`, spacing*2*i+8, height/6 + 18);
         stroke(1)
         strokeWeight(1)
         line(spacing*i-40, 0, spacing*i, height/6)
@@ -141,7 +148,14 @@ function createConveyorbelt() {
   const setVelocity = (val) => {
     velocityX = val;
   }
-  return {display, move, setVelocity}
+
+  const reset = () => {
+    positionX = width/2;
+    velocityX = 0;
+    beltVelocitySlider.value(0);
+  }
+
+  return {display, move, setVelocity, reset}
 
 
 }
