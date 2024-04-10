@@ -78,7 +78,9 @@ function draw() {
 
   belt.display();
   car.display();
-  makeArrow(3*carVelocitySlider.value(), width/2, height/5, 1, 0)
+  makeArrow(4*carVelocitySlider.value(), width/2, height/5, 1, 0, color(200, 0, 0))
+  makeArrow(4*beltVelocitySlider.value(), width/2, 1.2*height/5, 1, 0, color(25, 25, 200))
+  makeArrow(4*beltVelocitySlider.value()+4*carVelocitySlider.value(), width/2, 1.4*height/5, 1, 0, color(25, 25, 25))
 }
 
 function createCar() {
@@ -173,17 +175,19 @@ function createConveyorbelt() {
   return { display, move, setVelocity, reset };
 }
 
-function makeArrow(length, x, y, dirx, diry){
+function makeArrow(length, x, y, dirx, diry, c){
+  let col = color(c)
   push()
   translate(x, y)
   rotate(atan(diry/dirx))
   strokeWeight(10)
-  stroke(0)
+    stroke(col)
+    strokeCap(SQUARE);
   line(0,0,length,0)
   strokeWeight(1)
-  fill(0)
+  fill(col)
   if(length){
-    triangle(11*abs(length)/length+length, 0, length-10*length/abs(length) , 10, length-10*length/abs(length), -10);
+    triangle(11*abs(length)/length+length, 0, length-10*length/abs(length) , 10, length-11*length/abs(length), -10);
   }
   
   pop()
