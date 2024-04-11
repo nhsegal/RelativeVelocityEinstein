@@ -49,6 +49,7 @@ function setup() {
 function draw() {
   background(255);
   fill(0);
+  noStroke()
   text('Car Velocity Relative to Belt', width / 6, (4.2 * height) / 5);
   textSize(24);
   fill(200, 20, 20);
@@ -78,9 +79,30 @@ function draw() {
 
   belt.display();
   car.display();
-  makeArrow(4*carVelocitySlider.value(), width/2, height/5, 1, 0, color(200, 0, 0))
-  makeArrow(4*beltVelocitySlider.value(), width/2, 1.2*height/5, 1, 0, color(25, 25, 200))
-  makeArrow(4*beltVelocitySlider.value()+4*carVelocitySlider.value(), width/2, 1.4*height/5, 1, 0, color(25, 25, 25))
+  makeArrow(
+    4 * carVelocitySlider.value(),
+    width / 2,
+    height / 5,
+    1,
+    0,
+    color(200, 0, 0)
+  );
+  makeArrow(
+    4 * beltVelocitySlider.value(),
+    width / 2,
+    (1.2 * height) / 5,
+    1,
+    0,
+    color(25, 25, 200)
+  );
+  makeArrow(
+    4 * beltVelocitySlider.value() + 4 * carVelocitySlider.value(),
+    width / 2,
+    (1.4 * height) / 5,
+    1,
+    0,
+    color(25, 25, 25)
+  );
 }
 
 function createCar() {
@@ -142,10 +164,10 @@ function createConveyorbelt() {
     textSize(18);
     fill(200);
     noStroke();
-    
+
     push();
     translate(positionX, height / 2);
-   
+
     rect(-positionX, height / 12, width * 2, height / 6);
     for (let i = -lineNumber / 2; i < lineNumber / 2; i++) {
       noStroke();
@@ -175,20 +197,27 @@ function createConveyorbelt() {
   return { display, move, setVelocity, reset };
 }
 
-function makeArrow(length, x, y, dirx, diry, c){
-  let col = color(c)
-  push()
-  translate(x, y)
-  rotate(atan(diry/dirx))
-  strokeWeight(10)
-    stroke(col)
-    strokeCap(SQUARE);
-  line(0,0,length,0)
-  strokeWeight(1)
+function makeArrow(length, x, y, dirx, diry, c) {
+  let col = color(c);
+  push();
+  translate(x, y);
+  rotate(atan(diry / dirx));
   fill(col)
+  beginShape();
+  vertex(0, -4);
+  vertex(0, 4);
+  vertex(length*.7, 4);
+  vertex(length*.65, 8);
+  vertex(length, 0);
+  vertex(length*.65, -8);
+  vertex(length*.7, -4);
+  endShape(CLOSE);
+  
+  /*
+
   if(length){
     triangle(11*abs(length)/length+length, 0, length-10*length/abs(length) , 10, length-11*length/abs(length), -10);
   }
-  
-  pop()
+  */
+  pop();
 }
