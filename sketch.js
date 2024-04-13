@@ -15,7 +15,8 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1400, 600);
+  const myCanvas = createCanvas(1400, 600);
+  myCanvas.parent('canvasDiv');
   background(255);
   rectMode(CENTER);
   imageMode(CENTER);
@@ -23,7 +24,7 @@ function setup() {
   car = createCar();
   belt = createConveyorbelt();
   resetButton = createButton('Reset');
-  resetButton.position(width / 2 - 50, (4 * height) / 5);
+  resetButton.position(width / 2 - 25, (4 * height) / 5);
   resetButton.mousePressed(() => {
     car.reset();
     belt.reset();
@@ -32,13 +33,13 @@ function setup() {
   // Create a slider and place it at the top of the canvas.
   text("Car's velocity relative to belt", 10, 10);
   carVelocitySlider = createSlider(-20, 20);
-  carVelocitySlider.position(width / 10, (3.9 * height) / 5);
+  carVelocitySlider.position((2 * width) / 10, (3.9 * height) / 5);
   carVelocitySlider.size(160);
   carVelocitySlider.value(0);
   describe('A dark gray square with a range slider at the top.');
 
   beltVelocitySlider = createSlider(-20, 20);
-  beltVelocitySlider.position(width / 10, (4.65 * height) / 5);
+  beltVelocitySlider.position((8 * width) / 10 - 160, (3.9 * height) / 5);
   beltVelocitySlider.size(160);
   beltVelocitySlider.value(0);
   describe('A dark gray square with a range slider at the top.');
@@ -48,8 +49,9 @@ function setup() {
 
 function draw() {
   background(255);
+  makeNumberLine()
   fill(0);
-  noStroke()
+  noStroke();
   text('Car Velocity Relative to Belt', width / 6, (4.2 * height) / 5);
   textSize(24);
   fill(200, 20, 20);
@@ -61,7 +63,7 @@ function draw() {
 
   fill(0);
   textSize(18);
-  text('Belt Velocity Relative to Ground', width / 6, (4.95 * height) / 5);
+  text('Belt Velocity Relative to Ground', (5 * width) / 6, (4.2 * height) / 5);
   textSize(24);
   fill(30, 30, 200);
   text(
@@ -87,6 +89,9 @@ function draw() {
     0,
     color(200, 0, 0)
   );
+  //stroke(color(200, 0, 0))
+  //line(width/2, height/5 - 3,width/2, height/5 + 3 )
+
   makeArrow(
     4 * beltVelocitySlider.value(),
     width / 2,
@@ -95,6 +100,10 @@ function draw() {
     0,
     color(25, 25, 200)
   );
+
+  // stroke( color(25, 25, 200))
+  //  line(width/2, 1.2*height/5 - 3,width/2, 1.2*height/5 + 3 )
+
   makeArrow(
     4 * beltVelocitySlider.value() + 4 * carVelocitySlider.value(),
     width / 2,
@@ -103,11 +112,17 @@ function draw() {
     0,
     color(25, 25, 25)
   );
+
+  //  stroke( color(25, 25, 25))
+  //  line(width/2, 1.4*height/5 - 3,width/2, 1.4*height/5 + 3 )
+  
+
+
 }
 
 function createCar() {
   let positionX = width / 2;
-  let positionY = height / 2;
+  let positionY = height / 2 - 20;
   let velocityX = 0;
   let sizeX = 195;
   let sizeY = 100;
@@ -156,6 +171,7 @@ function createCar() {
 
 function createConveyorbelt() {
   let positionX = width / 2;
+  let positionY = height / 2;
   let velocityX = 0;
   let lineNumber = 300;
   let spacing = 80;
@@ -166,16 +182,16 @@ function createConveyorbelt() {
     noStroke();
 
     push();
-    translate(positionX, height / 2);
+    translate(positionX, positionY);
 
-    rect(-positionX, height / 12, width * 2, height / 6);
+    rect(-positionX, 0, width * 2, height / 16);
     for (let i = -lineNumber / 2; i < lineNumber / 2; i++) {
       noStroke();
       fill(0);
-      text(`${i * 10} cm`, spacing * 2 * i + 8, height / 6 + 18);
+      text(`${i * 10} cm`, spacing * 2 * i + 8, height / 32 + 15);
       stroke(1);
       strokeWeight(1);
-      line(spacing * i - 40, 0, spacing * i, height / 6);
+      line(spacing * i - 40, -height / 32, spacing * i, height / 32);
     }
     pop();
   };
@@ -198,26 +214,36 @@ function createConveyorbelt() {
 }
 
 function makeArrow(length, x, y, dirx, diry, c) {
+  noStroke();
   let col = color(c);
   push();
   translate(x, y);
   rotate(atan(diry / dirx));
-  fill(col)
+  fill(col);
   beginShape();
   vertex(0, -4);
   vertex(0, 4);
-  vertex(length*.7, 4);
-  vertex(length*.65, 8);
+  vertex(length * 0.7, 4);
+  vertex(length * 0.65, 8);
   vertex(length, 0);
-  vertex(length*.65, -8);
-  vertex(length*.7, -4);
+  vertex(length * 0.65, -8);
+  vertex(length * 0.7, -4);
   endShape(CLOSE);
-  
-  /*
-
-  if(length){
-    triangle(11*abs(length)/length+length, 0, length-10*length/abs(length) , 10, length-11*length/abs(length), -10);
-  }
-  */
   pop();
+}
+
+function makeNumberLine() {
+  let spacing = 80;
+  let lineNumber = 20;
+  push()
+  translate(width/2, height/4)
+  for (let i = -lineNumber / 2; i < lineNumber / 2; i++) {
+    noStroke();
+    fill(0,100, 0);
+    text(`${i * 10} cm`, 80 * 2 * i + 8, height / 32 + 15);
+    stroke(0, 100, 0);
+    strokeWeight(1);
+    line(2*spacing * i , height / 32 + 24, 2*spacing * i, height / 32+ 120);
+  }
+  pop() 
 }
