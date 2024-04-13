@@ -17,6 +17,7 @@ function preload() {
 function setup() {
   const myCanvas = createCanvas(1400, 600);
   myCanvas.parent('canvasDiv');
+  myCanvas.id('canvas')
   background(255);
   rectMode(CENTER);
   imageMode(CENTER);
@@ -31,15 +32,20 @@ function setup() {
   });
 
   // Create a slider and place it at the top of the canvas.
-  text("Car's velocity relative to belt", 10, 10);
   carVelocitySlider = createSlider(-20, 20);
-  carVelocitySlider.position((2 * width) / 10, (3.9 * height) / 5);
+  carVelocitySlider.id('carslider')
+  carVelocitySlider.parent('canvasDiv')
+  carVelocitySlider.position(380, -200, 'relative');
+  
   carVelocitySlider.size(160);
   carVelocitySlider.value(0);
   describe('A dark gray square with a range slider at the top.');
 
   beltVelocitySlider = createSlider(-20, 20);
-  beltVelocitySlider.position((8 * width) / 10 - 160, (3.9 * height) / 5);
+  beltVelocitySlider.id('beltslider')
+  beltVelocitySlider.parent('canvasDiv')
+  beltVelocitySlider.position(700, -200, 'relative');
+
   beltVelocitySlider.size(160);
   beltVelocitySlider.value(0);
   describe('A dark gray square with a range slider at the top.');
@@ -52,24 +58,24 @@ function draw() {
   makeNumberLine()
   fill(0);
   noStroke();
-  text('Car Velocity Relative to Belt', width / 6, (4.2 * height) / 5);
+  text('Car Velocity Relative to Belt', width / 3, (3.2 * height) / 5);
   textSize(24);
   fill(200, 20, 20);
   text(
     `${carVelocitySlider.value() / 10} cm/s`,
-    width / 6,
-    (3.87 * height) / 5
+    width / 3,
+    (3.7 * height) / 5
   );
 
   fill(0);
   textSize(18);
-  text('Belt Velocity Relative to Ground', (5 * width) / 6, (4.2 * height) / 5);
+  text('Belt Velocity Relative to Ground', (4 * width) / 6, (3.2 * height) / 5);
   textSize(24);
-  fill(30, 30, 200);
+  fill(120, 120, 120);
   text(
     `${beltVelocitySlider.value() / 10} cm/s`,
-    width / 6,
-    (4.62 * height) / 5
+    4*width / 6,
+    (3.7 * height) / 5
   );
   car.setVelocity(
     carVelocitySlider.value() / 10 + beltVelocitySlider.value() / 10
@@ -98,7 +104,7 @@ function draw() {
     (1.2 * height) / 5,
     1,
     0,
-    color(25, 25, 200)
+    color(120, 120, 120)
   );
 
   // stroke( color(25, 25, 200))
@@ -110,7 +116,7 @@ function draw() {
     (1.4 * height) / 5,
     1,
     0,
-    color(25, 25, 25)
+    color(0, 100, 0)
   );
 
   //  stroke( color(25, 25, 25))
@@ -246,4 +252,9 @@ function makeNumberLine() {
     line(2*spacing * i , height / 32 + 24, 2*spacing * i, height / 32+ 120);
   }
   pop() 
+}
+
+windowResized = () => {
+ // console.log(carVelocitySlider.parent())
+ // carVelocitySlider.position( width / 3, (3.2 * height) / 5)
 }
