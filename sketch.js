@@ -8,6 +8,7 @@ let beltVelocitySlider;
 
 let resetButton;
 let playButton;
+let paused = true;
 
 // Load the image.
 function preload() {
@@ -33,6 +34,7 @@ function setup() {
   resetButton.mousePressed(() => {
     car.reset();
     belt.reset();
+    paused = true;
   });
 
   playButton = createButton('Play');
@@ -41,11 +43,14 @@ function setup() {
   playButton.parent('canvasDiv')
   playButton.position(440, -255, 'relative');
   playButton.mousePressed(() => {
-    let buttontext = playButton.elt.innerHTML
-    if (buttontext != 'Pause'){
+
+    if (paused){
       playButton.elt.innerHTML = 'Pause'
-    } else {
+      paused = false;
+    }
+     else {
       playButton.elt.innerHTML = 'Play'
+      paused = true;
     }
   });
 
@@ -112,8 +117,11 @@ function draw() {
   );
   belt.setVelocity(beltVelocitySlider.value() / 10);
   car.setSpin(carVelocitySlider.value() / 10);
-  car.move();
-  belt.move();
+  if (!paused){
+    car.move();
+    belt.move();
+  }
+
 
   belt.display();
   car.display();
