@@ -25,7 +25,10 @@ function setup() {
   car = createCar();
   belt = createConveyorbelt();
   resetButton = createButton('Reset');
-  resetButton.position(width / 2 - 25, (4 * height) / 5);
+  resetButton.id('resetbutton')
+  resetButton.parent('canvasDiv')
+  resetButton.position(680, -255, 'relative');
+  
   resetButton.mousePressed(() => {
     car.reset();
     belt.reset();
@@ -35,7 +38,7 @@ function setup() {
   carVelocitySlider = createSlider(-20, 20);
   carVelocitySlider.id('carslider')
   carVelocitySlider.parent('canvasDiv')
-  carVelocitySlider.position(380, -200, 'relative');
+  carVelocitySlider.position(230, -200, 'relative');
   
   carVelocitySlider.size(160);
   carVelocitySlider.value(0);
@@ -44,7 +47,7 @@ function setup() {
   beltVelocitySlider = createSlider(-20, 20);
   beltVelocitySlider.id('beltslider')
   beltVelocitySlider.parent('canvasDiv')
-  beltVelocitySlider.position(700, -200, 'relative');
+  beltVelocitySlider.position(740, -200, 'relative');
 
   beltVelocitySlider.size(160);
   beltVelocitySlider.value(0);
@@ -58,25 +61,37 @@ function draw() {
   makeNumberLine()
   fill(0);
   noStroke();
-  text('Car Velocity Relative to Belt', width / 3, (3.2 * height) / 5);
+  text('Car Velocity Relative to Belt', width / 4, (3.2 * height) / 5);
   textSize(24);
   fill(200, 20, 20);
   text(
     `${carVelocitySlider.value() / 10} cm/s`,
-    width / 3,
+    width / 4 + 24,
     (3.7 * height) / 5
   );
 
   fill(0);
   textSize(18);
-  text('Belt Velocity Relative to Ground', (4 * width) / 6, (3.2 * height) / 5);
+  text('Belt Velocity Relative to Ground', (3 * width) / 4 , (3.2 * height) / 5);
   textSize(24);
   fill(120, 120, 120);
   text(
     `${beltVelocitySlider.value() / 10} cm/s`,
-    4*width / 6,
+    3*width / 4 - 1,
     (3.7 * height) / 5
   );
+
+  fill(0, 100, 0);
+  text(
+    `${(beltVelocitySlider.value() +carVelocitySlider.value()) / 10} cm/s`,
+    width / 2,
+    (3.7 * height) / 5
+  );
+
+  fill(0);
+  textSize(18);
+  text('Car Velocity Relative to Ground', (2 * width) / 4 , (3.42 * height) / 5);
+
   car.setVelocity(
     carVelocitySlider.value() / 10 + beltVelocitySlider.value() / 10
   );
@@ -101,7 +116,7 @@ function draw() {
   makeArrow(
     4 * beltVelocitySlider.value(),
     width / 2,
-    (1.2 * height) / 5,
+    (.8 * height) / 5,
     1,
     0,
     color(120, 120, 120)
@@ -113,7 +128,7 @@ function draw() {
   makeArrow(
     4 * beltVelocitySlider.value() + 4 * carVelocitySlider.value(),
     width / 2,
-    (1.4 * height) / 5,
+    (0.4 * height) / 5,
     1,
     0,
     color(0, 100, 0)
