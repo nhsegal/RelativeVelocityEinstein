@@ -7,6 +7,7 @@ let belt;
 let beltVelocitySlider;
 
 let resetButton;
+let playButton;
 
 // Load the image.
 function preload() {
@@ -25,13 +26,27 @@ function setup() {
   car = createCar();
   belt = createConveyorbelt();
   resetButton = createButton('Reset');
+  resetButton.size(80,25);
   resetButton.id('resetbutton')
   resetButton.parent('canvasDiv')
-  resetButton.position(680, -255, 'relative');
-  
+  resetButton.position(780, -255, 'relative');
   resetButton.mousePressed(() => {
     car.reset();
     belt.reset();
+  });
+
+  playButton = createButton('Play');
+  playButton.size(80,25);
+  playButton.id('playbutton')
+  playButton.parent('canvasDiv')
+  playButton.position(440, -255, 'relative');
+  playButton.mousePressed(() => {
+    let buttontext = playButton.elt.innerHTML
+    if (buttontext != 'Pause'){
+      playButton.elt.innerHTML = 'Pause'
+    } else {
+      playButton.elt.innerHTML = 'Play'
+    }
   });
 
   // Create a slider and place it at the top of the canvas.
@@ -161,11 +176,15 @@ function createCar() {
     spinRate = val;
   };
   const display = () => {
-    push();
+
 
     image(car_img, positionX, positionY, sizeX, sizeY);
+    stroke(0)
+    for (let i = 0; i<17; i++){
+      line(positionX, 160+i*10, positionX, 160+i*10+5)
+    }
 
-    pop();
+
 
     push();
     translate(positionX - sizeX * 0.31, positionY + sizeY * 0.16);
