@@ -16,6 +16,7 @@ let clock;
 function preload() {
   car_img = loadImage('imgs/car.png');
   wheel_img = loadImage('imgs/wheel.png');
+  playbutton_img = loadImage('imgs/wheel.png');
 }
 
 function setup() {
@@ -41,11 +42,12 @@ function setup() {
     paused = true;
   });
 
-  playButton = createButton('Play');
-  playButton.size(80,25);
+  playButton = createButton('');
+  playButton.size(80,80);
   playButton.id('playbutton')
   playButton.parent('canvasDiv')
   playButton.position(440, -255, 'relative');
+  playButton.style("background: url('imgs/playpause.png'); background-size:cover")
   playButton.mousePressed(() => {
 
     if (paused){
