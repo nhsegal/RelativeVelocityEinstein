@@ -16,7 +16,7 @@ let clock;
 function preload() {
   car_img = loadImage('imgs/car.png');
   wheel_img = loadImage('imgs/wheel.png');
-  playbutton_img = loadImage('imgs/wheel.png');
+ // playbutton_img = loadImage('imgs/playpause.png');
 }
 
 function setup() {
@@ -30,11 +30,12 @@ function setup() {
   textAlign(CENTER);
   car = createCar();
   belt = createConveyorbelt();
-  resetButton = createButton('Reset');
-  resetButton.size(80,25);
+  resetButton = createButton('');
+  resetButton.size(80,80);
   resetButton.id('resetbutton')
   resetButton.parent('canvasDiv')
-  resetButton.position(780, -255, 'relative');
+  resetButton.position(700, -125, 'relative');
+  resetButton.style("background: url('imgs/reset.png'); background-size:cover; border-radius: 8px")
   resetButton.mousePressed(() => {
     car.reset();
     belt.reset();
@@ -46,16 +47,18 @@ function setup() {
   playButton.size(80,80);
   playButton.id('playbutton')
   playButton.parent('canvasDiv')
-  playButton.position(440, -255, 'relative');
-  playButton.style("background: url('imgs/playpause.png'); background-size:cover")
+  playButton.position(530, -125, 'relative');
+  playButton.style("background: url('imgs/playpause.png'); background-size:cover; background-color:#90d090; border-radius: 8px" )
   playButton.mousePressed(() => {
 
     if (paused){
-      playButton.elt.innerHTML = 'Pause'
+      //playButton.elt.innerHTML = 'Pause'
+      playButton.style("background-color:#f0a0a0")
       paused = false;
     }
      else {
-      playButton.elt.innerHTML = 'Play'
+      //playButton.elt.innerHTML = 'Play'
+      playButton.style("background-color:#90d090")
       paused = true;
     }
   });
@@ -64,7 +67,7 @@ function setup() {
   carVelocitySlider = createSlider(-30, 30);
   carVelocitySlider.id('carslider')
   carVelocitySlider.parent('canvasDiv')
-  carVelocitySlider.position(90, -155, 'relative');
+  carVelocitySlider.position(90, -2.2*height/5, 'relative');
   
   carVelocitySlider.size(180);
   carVelocitySlider.value(0);
@@ -73,7 +76,7 @@ function setup() {
   beltVelocitySlider = createSlider(-30, 30);
   beltVelocitySlider.id('beltslider')
   beltVelocitySlider.parent('canvasDiv')
-  beltVelocitySlider.position(620, -155, 'relative');
+  beltVelocitySlider.position(620, -2.2*height/5, 'relative');
 
   beltVelocitySlider.size(180);
   beltVelocitySlider.value(0);
@@ -93,8 +96,8 @@ function draw() {
   makeNumberLine()
   fill(0)
   noStroke();
-  textSize(18)
-  text('Car Velocity Relative to Belt', width / 4,  (3.42 * height) / 5);
+  textSize(20)
+  text('Car Velocity Relative to Belt', width / 4,  (3.2 * height) / 5);
   textSize(24);
   fill(200, 20, 20);
   text(
@@ -104,8 +107,8 @@ function draw() {
   );
 
   fill(0);
-  textSize(18);
-  text('Belt Velocity Relative to Ground', (3 * width) / 4 ,  (3.42 * height) / 5);
+  textSize(20);
+  text('Belt Velocity Relative to Ground', (3 * width) / 4 ,  (3.2 * height) / 5);
   textSize(24);
   fill(120, 120, 120);
   text(
@@ -115,6 +118,7 @@ function draw() {
   );
 
   fill(0, 100, 0);
+  textSize(36)
   text(
     `${(beltVelocitySlider.value() + carVelocitySlider.value()).toFixed(2)} cm/s`,
     width / 2,
@@ -122,8 +126,8 @@ function draw() {
   );
 
   fill(0);
-  textSize(18);
-  text('Car Velocity Relative to Ground', (2 * width) / 4 , (3.42 * height) / 5);
+  textSize(20);
+  text('Car Velocity Relative to Ground', (2 * width) / 4 , (3.2 * height) / 5);
 
   car.setVelocity(
     carVelocitySlider.value() / 4 + beltVelocitySlider.value() / 4
@@ -165,13 +169,17 @@ function draw() {
     color(0, 100, 0)
   );
 
+  fill(255);
+  stroke(0)
+  rect( width/2, height-110, 130, 50, 10)
   fill(0)
-  textSize(24)
+  textSize(36)
   text(
     `${(clock / 60).toFixed(2)} s`,
     width / 2,
-    ( height) / 8
+    ( height) -100
   );
+  
 
 
 }
@@ -294,6 +302,7 @@ function makeArrow(length, x, y, dirx, diry, c) {
 function makeNumberLine() {
   //let spacing = 80;
   let lineNumber = 20;
+  textSize(18)
   push()
   translate(width/2, height/4)
   for (let i = -lineNumber / 2; i < lineNumber / 2; i++) {
