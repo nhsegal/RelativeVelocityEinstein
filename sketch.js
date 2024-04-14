@@ -173,17 +173,25 @@ function draw() {
 
   fill(255);
   stroke(0)
-  rect( width/2, height-110, 130, 50, 10)
+  rect(4.1 *width/5, height-210, 130, 50, 10)
   fill(0)
   textSize(36)
   textAlign(CENTER)
   text(
     `${(clock / 60).toFixed(2)} s`,
-    width / 2,
-    ( height) -100
+    4.1*width / 5,
+    ( height) -200
   );
   
-
+  fill(0)
+  noStroke()
+  textSize(16)
+  textAlign(RIGHT)
+  text(
+    "Credit: Copied from Michael Freeman (afreeparticle.com) ",
+    5*width / 5,
+     height - 5 
+  );
 
 }
 
