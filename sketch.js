@@ -62,7 +62,7 @@ function setup() {
   carVelocitySlider = createSlider(-30, 30);
   carVelocitySlider.id('carslider')
   carVelocitySlider.parent('canvasDiv')
-  carVelocitySlider.position(230, -200, 'relative');
+  carVelocitySlider.position(90, -155, 'relative');
   
   carVelocitySlider.size(180);
   carVelocitySlider.value(0);
@@ -71,14 +71,14 @@ function setup() {
   beltVelocitySlider = createSlider(-30, 30);
   beltVelocitySlider.id('beltslider')
   beltVelocitySlider.parent('canvasDiv')
-  beltVelocitySlider.position(740, -200, 'relative');
+  beltVelocitySlider.position(620, -155, 'relative');
 
   beltVelocitySlider.size(180);
   beltVelocitySlider.value(0);
   describe('A dark gray square with a range slider at the top.');
 
   textFont('Arial');
-  spacing = 120;
+  spacing = 75;
   clock = 0;
 }
 
@@ -91,29 +91,30 @@ function draw() {
   makeNumberLine()
   fill(0)
   noStroke();
-  text('Car Velocity Relative to Belt', width / 4, (3.2 * height) / 5);
+  textSize(18)
+  text('Car Velocity Relative to Belt', width / 4,  (3.42 * height) / 5);
   textSize(24);
   fill(200, 20, 20);
   text(
-    `${carVelocitySlider.value()*.25} cm/s`,
-    width / 4 + 24,
+    `${(carVelocitySlider.value()).toFixed(2)} cm/s`,
+    width / 4 + 20,
     (3.7 * height) / 5
   );
 
   fill(0);
   textSize(18);
-  text('Belt Velocity Relative to Ground', (3 * width) / 4 , (3.2 * height) / 5);
+  text('Belt Velocity Relative to Ground', (3 * width) / 4 ,  (3.42 * height) / 5);
   textSize(24);
   fill(120, 120, 120);
   text(
-    `${beltVelocitySlider.value()*.25} cm/s`,
-    3*width / 4 - 1,
+    `${(beltVelocitySlider.value()).toFixed(2)} cm/s`,
+    3*width / 4 + 30,
     (3.7 * height) / 5
   );
 
   fill(0, 100, 0);
   text(
-    `${(beltVelocitySlider.value() +carVelocitySlider.value()) / 10} cm/s`,
+    `${((beltVelocitySlider.value() + carVelocitySlider.value()) / 4).toFixed(2)} cm/s`,
     width / 2,
     (3.7 * height) / 5
   );
@@ -226,7 +227,6 @@ function createConveyorbelt() {
   let positionY = height / 2;
   let velocityX = 0;
   let lineNumber = 300;
-  //let spacing = 80;
 
   const display = () => {
     textSize(18);
@@ -298,9 +298,4 @@ function makeNumberLine() {
     line(2*spacing * i , height / 32 + 24, 2*spacing * i, height / 32+ 120);
   }
   pop() 
-}
-
-windowResized = () => {
- // console.log(carVelocitySlider.parent())
- // carVelocitySlider.position( width / 3, (3.2 * height) / 5)
 }
