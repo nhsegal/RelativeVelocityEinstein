@@ -114,7 +114,7 @@ function draw() {
 
   fill(0, 100, 0);
   text(
-    `${((beltVelocitySlider.value() + carVelocitySlider.value()) / 4).toFixed(2)} cm/s`,
+    `${(beltVelocitySlider.value() + carVelocitySlider.value()).toFixed(2)} cm/s`,
     width / 2,
     (3.7 * height) / 5
   );
@@ -136,8 +136,8 @@ function draw() {
   belt.display();
   car.display();
   makeArrow(
-    4 * carVelocitySlider.value(),
-    width / 2,
+    12 * carVelocitySlider.value(),
+    car.reportPosition(),
     height / 5,
     1,
     0,
@@ -145,8 +145,8 @@ function draw() {
   );
 
   makeArrow(
-    4 * beltVelocitySlider.value(),
-    width / 2,
+    12 * beltVelocitySlider.value(),
+    car.reportPosition(),
     (.8 * height) / 5,
     1,
     0,
@@ -155,8 +155,8 @@ function draw() {
 
   
   makeArrow(
-    4 * beltVelocitySlider.value() + 4 * carVelocitySlider.value(),
-    width / 2,
+    12 * beltVelocitySlider.value() + 12 * carVelocitySlider.value(),
+    car.reportPosition(),
     (0.4 * height) / 5,
     1,
     0,
@@ -217,9 +217,14 @@ function createCar() {
   const move = () => {
     positionX = positionX + velocityX;
     angle = angle + 0.0001 * sizeX * spinRate;
+   
   };
 
-  return { display, move, reset, setVelocity, setSpin };
+  const reportPosition = () => {
+    return positionX
+  }
+
+  return { display, move, reset, setVelocity, setSpin, reportPosition };
 }
 
 function createConveyorbelt() {
