@@ -12,16 +12,21 @@ let paused = true;
 let spacing;
 let clock;
 
+let modeButton;
+let einstein = false;
+let beta1;
+let gamma1;
+let beta2;
+let gamma2;
+
 // Load the image.
 function preload() {
   car_img = loadImage('imgs/car.png');
   wheel_img = loadImage('imgs/wheel.png');
- // playbutton_img = loadImage('imgs/playpause.png');
 }
 
 function setup() {
   const myCanvas = createCanvas(1400, 600);
-
   myCanvas.parent('canvasDiv');
   myCanvas.id('canvas')
   background(255);
@@ -86,9 +91,41 @@ function setup() {
   textFont('Arial');
   spacing = 75;
   clock = 0;
+
+  
+  modeButton = createButton('300,000,000 m/s');
+  modeButton.size(180,40);
+  modeButton.id('modebutton')
+  modeButton.parent('canvasDiv')
+  modeButton.position(90, -145, 'relative');
+  modeButton.style(" background-size:cover; background-color:#f0a0a0; border-radius: 8px; font-size: 20px" )
+  modeButton.mousePressed(() => {
+    if (einstein){
+      modeButton.elt.innerHTML = '300,000,000 m/s'
+      modeButton.style("background-color:#f0a0a0")
+      einstein = false;
+    }
+     else {
+      modeButton.elt.innerHTML = '30.5 cm/s'
+      modeButton.style("background-color:#3adaff")
+      einstein = true;
+    }
+  });
+
 }
 
 function draw() {
+  if (einstein){
+    beta1 = (carVelocitySlider.value()/30.5 + beltVelocitySlider.value()/30.5)/
+    (1+ (carVelocitySlider.value()/30.5)*(beltVelocitySlider.value()/30.5))
+    gamma1 = 1/Math.sqrt(1-beta1*beta1)
+    beta2 = beltVelocitySlider.value()/30.5
+    gamma2 = 1/Math.sqrt(1-beta2*beta2)
+  }
+  else {
+    gamma1 = 1;
+    gamma2 =1;
+  }
   if (!paused){
     clock++;
   }
@@ -143,6 +180,7 @@ function draw() {
 
   belt.display();
   car.display();
+
   makeArrow(
     12 * carVelocitySlider.value(),
     car.reportPosition(),
@@ -216,24 +254,28 @@ function createCar() {
     spinRate = val;
   };
   const display = () => {
-    image(car_img, positionX, positionY, sizeX, sizeY);
+    push()
+    translate(positionX,positionY)
+    scale(1/gamma1,1)
+    image(car_img, 0, 0, sizeX, sizeY);
+    
     stroke(0)
     for (let i = 0; i<17; i++){
-      line(positionX, 160+i*10, positionX, 160+i*10+5)
+      line(0, -100+i*10, 0, -100+i*10+5)
     }
     push();
-    translate(positionX - sizeX * 0.31, positionY + sizeY * 0.16);
+    translate(0 - sizeX * 0.31, 0 + sizeY * 0.16);
     rotate(angle);
     image(wheel_img, 0, 0, 0.2 * sizeX, 0.2 * sizeX);
     pop();
 
     push();
-    translate(positionX + sizeX * 0.314, positionY + sizeY * 0.16);
+    translate(0 + sizeX * 0.314, 0 + sizeY * 0.16);
     rotate(angle);
     image(wheel_img, 0, 0, 0.2 * sizeX, 0.2 * sizeX);
     pop();
-
     describe('A red car');
+    pop()
   };
 
   const move = () => {
@@ -243,6 +285,7 @@ function createCar() {
   };
 
   const reportPosition = () => {
+    console.log(positionX)
     return positionX
   }
 
@@ -253,7 +296,7 @@ function createConveyorbelt() {
   let positionX = width / 2;
   let positionY = height / 2;
   let velocityX = 0;
-  let lineNumber = 300;
+  let lineNumber = 900;
 
   const display = () => {
     textSize(18);
@@ -262,12 +305,12 @@ function createConveyorbelt() {
 
     push();
     translate(positionX, positionY);
-
-    rect(-positionX, 0, width * 2, height / 16);
+    scale(1/gamma2,1)
+    rect(-positionX, 0, width * 80, height / 16);
     for (let i = -lineNumber / 2; i < lineNumber / 2; i++) {
       noStroke();
       fill(100);
-      text(`${i * 10} cm`, spacing * 2 * i + 8, height / 32 + 15);
+      text(`${i * 10} cm`, (spacing * 2 * i + 8), height / 32 + 15);
       stroke(1);
       strokeWeight(1);
       line(spacing * i - 40, -height / 32, spacing * i, height / 32);
