@@ -54,6 +54,7 @@ function draw() {
     gamma1 = 1/Math.sqrt(1-beta1*beta1)
     beta2 = beltVelocitySlider.value()/50
     gamma2 = 1/Math.sqrt(1-beta2*beta2)
+    console.log(clock)
   if (!paused){
     if(rewind){
       clock--;

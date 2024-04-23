@@ -12,6 +12,11 @@ const makeButtons = () => {
     belt.reset();
     clock = 0;
     paused = true;
+    rewind = false;
+    carVelocitySlider.elt.disabled = false;
+    beltVelocitySlider.elt.disabled = false;
+    forwardButton.style('visibility', 'visible');
+    backwardButton.style('visibility', 'visible');
     loop();
   });
 
@@ -71,5 +76,6 @@ const makeButtons = () => {
     paused = false;
     draw();
     paused = true;
+    rewind = false;
   });
 };
