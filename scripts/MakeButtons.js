@@ -5,7 +5,6 @@
   resetButton.parent('canvasDiv')
   resetButton.position(975, -245, 'relative');
   resetButton.style("background: url('imgs/reset.png'); background-size:cover; border-radius: 8px")
-  resetButton.elt.style
   resetButton.mousePressed(() => {
     car.reset();
     belt.reset();
@@ -21,14 +20,20 @@
   playButton.style("background: url('imgs/playpause.png'); background-size:cover; background-color:#90d090; border-radius: 8px" )
   playButton.mousePressed(() => {
     if (paused){
-      //playButton.elt.innerHTML = 'Pause'
       playButton.style("background-color:#f0a0a0")
       paused = false;
+      carVelocitySlider.elt.disabled = true
+      beltVelocitySlider.elt.disabled = true
+      forwardButton.style('visibility', 'hidden')
+      backwardButton.style('visibility', 'hidden')
     }
      else {
-      //playButton.elt.innerHTML = 'Play'
       playButton.style("background-color:#90d090")
       paused = true;
+      carVelocitySlider.elt.disabled = false
+      beltVelocitySlider.elt.disabled = false
+      forwardButton.style('visibility', 'visible')
+      backwardButton.style('visibility', 'visible')
     }
   });
 
@@ -39,8 +44,11 @@
   forwardButton.parent('canvasDiv')
   forwardButton.position(755, -205, 'relative');
   forwardButton.style("background: url('imgs/forward.png'); background-size:cover; border-radius: 8px")
-  forwardButton.elt.style
   forwardButton.mousePressed(() => {
+   
+    noLoop();
+    paused = false;
+    draw();
     paused = true;
   });
 
@@ -50,8 +58,8 @@
   backwardButton.parent('canvasDiv')
   backwardButton.position(675, -205, 'relative');
   backwardButton.style("background: url('imgs/backward.png'); background-size:cover; border-radius: 8px")
-  backwardButton.elt.style
   backwardButton.mousePressed(() => {
-    paused = true;
+   
+
   });
 }

@@ -38,31 +38,13 @@ function setup() {
   car = createCar();
   belt = createConveyorbelt();
   makeButtons();
-
+  makeSliders();
   // Create a slider and place it at the top of the canvas.
-  carVelocitySlider = createSlider(-49, 49);
-  carVelocitySlider.id('carslider')
-  carVelocitySlider.parent('canvasDiv')
-  carVelocitySlider.position(120, -2.43*height/5, 'relative');
-  
-  carVelocitySlider.size(180);
-  carVelocitySlider.value(0);
-  describe('A dark gray square with a range slider at the top.');
 
-  beltVelocitySlider = createSlider(-49, 49);
-  beltVelocitySlider.id('beltslider')
-  beltVelocitySlider.parent('canvasDiv')
-  beltVelocitySlider.position(-65, -2.23*height/5, 'relative');
-
-  beltVelocitySlider.size(180);
-  beltVelocitySlider.value(0);
-  describe('A dark gray square with a range slider at the top.');
 
   textFont('Arial');
   spacing = 75;
   clock = 0;
-
-
 }
 
 function draw() {
@@ -164,7 +146,7 @@ function draw() {
   textSize(36)
   textAlign(CENTER)
   text(
-    `${(clock/600 ).toFixed(2)} yr`,
+    `${(clock/600 ).toFixed(3)} yr`,
     4.1*width / 5,
     ( height) -200
   );
