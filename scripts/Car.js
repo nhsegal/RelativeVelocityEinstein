@@ -13,6 +13,7 @@ function createCar() {
     playButton.style("background-color:#90d090")
   };
   const setVelocity = (val) => {
+    console.log(val)
     velocityX = val;
   };
   const setSpin = (val) => {
@@ -50,7 +51,6 @@ function createCar() {
   };
 
   const reportPosition = () => {
-    console.log(positionX)
     return positionX
   }
 

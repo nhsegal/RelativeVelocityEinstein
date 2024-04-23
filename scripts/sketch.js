@@ -36,10 +36,10 @@ function setup() {
   textAlign(CENTER);
   car = createCar();
   belt = createConveyorbelt();
-  makeButtons()
+  makeButtons();
 
   // Create a slider and place it at the top of the canvas.
-  carVelocitySlider = createSlider(-30, 30);
+  carVelocitySlider = createSlider(-49, 49);
   carVelocitySlider.id('carslider')
   carVelocitySlider.parent('canvasDiv')
   carVelocitySlider.position(120, -2.43*height/5, 'relative');
@@ -48,7 +48,7 @@ function setup() {
   carVelocitySlider.value(0);
   describe('A dark gray square with a range slider at the top.');
 
-  beltVelocitySlider = createSlider(-30, 30);
+  beltVelocitySlider = createSlider(-49, 49);
   beltVelocitySlider.id('beltslider')
   beltVelocitySlider.parent('canvasDiv')
   beltVelocitySlider.position(-65, -2.23*height/5, 'relative');
@@ -86,7 +86,7 @@ function draw() {
   textSize(24);
   fill(200, 20, 20);
   text(
-    `${(carVelocitySlider.value()).toFixed(0)} cm/s`,
+    `${(carVelocitySlider.value()).toFixed(2)/50}c`,
     3.04* width / 5 ,
     (3.2 * height) / 5
   );
@@ -97,7 +97,7 @@ function draw() {
   textSize(24);
   fill(120, 120, 120);
   text(
-    `${(beltVelocitySlider.value()).toFixed(0)} cm/s`,
+    `${(beltVelocitySlider.value()).toFixed(2)/50}c`,
     3.04* width / 5 ,
     (3.4 * height) / 5
   );
@@ -105,7 +105,7 @@ function draw() {
   fill(0, 100, 0);
   textSize(24)
   text(
-    `${(beltVelocitySlider.value() + carVelocitySlider.value()).toFixed(0)} cm/s`,
+    `${(beltVelocitySlider.value() + carVelocitySlider.value()).toFixed(2)/50}c`,
     3.04* width / 5,
     (3.6 * height) / 5
   );
@@ -115,10 +115,10 @@ function draw() {
   text('Car Velocity Relative to Ground', (2.16 * width) / 4  , (3.6 * height) / 5);
 
   car.setVelocity(
-    carVelocitySlider.value() / 4 + beltVelocitySlider.value() / 4
+    carVelocitySlider.value() / 16 + beltVelocitySlider.value() / 16
   );
-  belt.setVelocity(beltVelocitySlider.value() / 4);
-  car.setSpin(carVelocitySlider.value() / 4);
+  belt.setVelocity(beltVelocitySlider.value() / 16);
+  car.setSpin(carVelocitySlider.value() / 16);
   if (!paused){
     car.move();
     belt.move();
