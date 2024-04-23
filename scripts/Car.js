@@ -13,7 +13,6 @@ function createCar() {
     playButton.style("background-color:#90d090")
   };
   const setVelocity = (val) => {
-    console.log(val)
     velocityX = val;
   };
   const setSpin = (val) => {
@@ -44,10 +43,15 @@ function createCar() {
     pop()
   };
 
-  const move = () => {
-    console.log(velocityX)
-    positionX = positionX + velocityX;
-    angle = angle + 0.0001 * sizeX * spinRate;
+  const move = (rewind) => {
+    if (!rewind){
+      positionX = positionX + velocityX;
+      angle = angle + 0.0001 * sizeX * spinRate;
+    }
+    else {
+      positionX = positionX - velocityX;
+      angle = angle - 0.0001 * sizeX * spinRate;
+    }
    
   };
 

@@ -20,6 +20,7 @@ let gamma1;
 let beta2;
 let gamma2;
 let carVel;
+let rewind = false;
 
 // Load the image.
 function preload() {
@@ -48,16 +49,17 @@ function setup() {
 }
 
 function draw() {
-
     beta1 = (carVelocitySlider.value()/50 + beltVelocitySlider.value()/50)/
     (1+ (carVelocitySlider.value()/50)*(beltVelocitySlider.value()/50))
     gamma1 = 1/Math.sqrt(1-beta1*beta1)
     beta2 = beltVelocitySlider.value()/50
     gamma2 = 1/Math.sqrt(1-beta2*beta2)
-
-
   if (!paused){
-    clock++;
+    if(rewind){
+      clock--;
+    } else {
+      clock++;
+    }
   }
   frameRate(60)
   background(255);
@@ -104,8 +106,8 @@ function draw() {
   belt.setVelocity(beta2);
   car.setSpin(beta1);
   if (!paused){
-    car.move();
-    belt.move();
+    car.move(rewind);
+    belt.move(rewind);
   }
 
   belt.display();
@@ -119,7 +121,6 @@ function draw() {
     0,
     color(200, 0, 0)
   );
-
   makeArrow(
     200 * beltVelocitySlider.value()/50,
     car.reportPosition(),
@@ -127,9 +128,7 @@ function draw() {
     1,
     0,
     color(120, 120, 120)
-  );
-
-  
+  );  
   makeArrow(
     200 * beta1,
     car.reportPosition(),
@@ -141,7 +140,7 @@ function draw() {
 
   fill(255);
   stroke(0)
-  rect(4.1 *width/5, height-210, 130, 50, 10)
+  rect(4.1 *width/5, height-210, 150, 50, 10)
   fill(0)
   textSize(36)
   textAlign(CENTER)
@@ -151,15 +150,7 @@ function draw() {
     ( height) -200
   );
   
-  fill(0)
-  noStroke()
-  textSize(16)
-  textAlign(RIGHT)
-  text(
-    "Credit: Copied from Michael Freeman (afreeparticle.com) ",
-    5*width / 5,
-     height - 5 
-  );
+
 
 }
 
@@ -190,8 +181,14 @@ function createConveyorbelt() {
     pop();
   };
 
-  const move = () => {
-    positionX = positionX + velocityX;
+  const move = (rewind) => {
+    if (!rewind){
+      positionX = positionX + velocityX;
+    }
+    else {
+      positionX = positionX - velocityX;
+    }
+
   };
 
   const setVelocity = (val) => {
