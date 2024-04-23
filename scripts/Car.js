@@ -45,6 +45,7 @@ function createCar() {
   };
 
   const move = () => {
+    console.log(velocityX)
     positionX = positionX + velocityX;
     angle = angle + 0.0001 * sizeX * spinRate;
    

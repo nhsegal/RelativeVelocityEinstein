@@ -119,8 +119,8 @@ function draw() {
   car.setVelocity(
    beta1
   );
-  belt.setVelocity(beltVelocitySlider.value() / 16);
-  car.setSpin(carVelocitySlider.value() / 16);
+  belt.setVelocity(beta2);
+  car.setSpin(beta1);
   if (!paused){
     car.move();
     belt.move();
@@ -130,7 +130,7 @@ function draw() {
   car.display();
 
   makeArrow(
-    12 * carVelocitySlider.value(),
+    200 * carVelocitySlider.value()/50,
     car.reportPosition(),
     height / 12 + 50,
     1,
@@ -139,7 +139,7 @@ function draw() {
   );
 
   makeArrow(
-    12 * beltVelocitySlider.value(),
+    200 * beltVelocitySlider.value()/50,
     car.reportPosition(),
      1.35*height / 12 + 50,
     1,
@@ -149,7 +149,7 @@ function draw() {
 
   
   makeArrow(
-    12 * beltVelocitySlider.value() + 12 * carVelocitySlider.value(),
+    200 * beta1,
     car.reportPosition(),
     1.7*height/12 + 50,
     1,
@@ -164,7 +164,7 @@ function draw() {
   textSize(36)
   textAlign(CENTER)
   text(
-    `${(clock / 384).toFixed(2)} yr`,
+    `${(clock/600 ).toFixed(2)} yr`,
     4.1*width / 5,
     ( height) -200
   );
