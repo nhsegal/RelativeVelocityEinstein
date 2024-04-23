@@ -19,6 +19,7 @@ let beta1;
 let gamma1;
 let beta2;
 let gamma2;
+let carVel;
 
 // Load the image.
 function preload() {
@@ -65,6 +66,7 @@ function setup() {
 }
 
 function draw() {
+
     beta1 = (carVelocitySlider.value()/50 + beltVelocitySlider.value()/50)/
     (1+ (carVelocitySlider.value()/50)*(beltVelocitySlider.value()/50))
     gamma1 = 1/Math.sqrt(1-beta1*beta1)
@@ -86,7 +88,7 @@ function draw() {
   textSize(24);
   fill(200, 20, 20);
   text(
-    `${(carVelocitySlider.value()).toFixed(2)/50}c`,
+    `${(carVelocitySlider.value()).toFixed(4)/50}c`,
     3.04* width / 5 ,
     (3.2 * height) / 5
   );
@@ -97,7 +99,7 @@ function draw() {
   textSize(24);
   fill(120, 120, 120);
   text(
-    `${(beltVelocitySlider.value()).toFixed(2)/50}c`,
+    `${(beltVelocitySlider.value()).toFixed(4)/50}c`,
     3.04* width / 5 ,
     (3.4 * height) / 5
   );
@@ -105,7 +107,7 @@ function draw() {
   fill(0, 100, 0);
   textSize(24)
   text(
-    `${(beltVelocitySlider.value() + carVelocitySlider.value()).toFixed(2)/50}c`,
+    `${beta1.toFixed(4)}c`,
     3.04* width / 5,
     (3.6 * height) / 5
   );
@@ -113,9 +115,9 @@ function draw() {
   fill(0);
   textSize(20);
   text('Car Velocity Relative to Ground', (2.16 * width) / 4  , (3.6 * height) / 5);
-
+  
   car.setVelocity(
-    carVelocitySlider.value() / 16 + beltVelocitySlider.value() / 16
+   beta1
   );
   belt.setVelocity(beltVelocitySlider.value() / 16);
   car.setSpin(carVelocitySlider.value() / 16);
