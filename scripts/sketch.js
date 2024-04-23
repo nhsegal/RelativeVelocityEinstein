@@ -65,10 +65,10 @@ function setup() {
 }
 
 function draw() {
-    beta1 = (carVelocitySlider.value()/30.5 + beltVelocitySlider.value()/30.5)/
-    (1+ (carVelocitySlider.value()/30.5)*(beltVelocitySlider.value()/30.5))
+    beta1 = (carVelocitySlider.value()/50 + beltVelocitySlider.value()/50)/
+    (1+ (carVelocitySlider.value()/50)*(beltVelocitySlider.value()/50))
     gamma1 = 1/Math.sqrt(1-beta1*beta1)
-    beta2 = beltVelocitySlider.value()/30.5
+    beta2 = beltVelocitySlider.value()/50
     gamma2 = 1/Math.sqrt(1-beta2*beta2)
 
 
@@ -162,7 +162,7 @@ function draw() {
   textSize(36)
   textAlign(CENTER)
   text(
-    `${(clock / 60).toFixed(2)} s`,
+    `${(clock / 384).toFixed(2)} yr`,
     4.1*width / 5,
     ( height) -200
   );
@@ -198,7 +198,7 @@ function createConveyorbelt() {
     for (let i = -lineNumber / 2; i < lineNumber / 2; i++) {
       noStroke();
       fill(100);
-      text(`${i * 10} cm`, (spacing * 2 * i + 8), height / 32 + 15);
+      text(`${i * .25} ly`, (spacing * 2 * i + 8), height / 32 + 15);
       stroke(1);
       strokeWeight(1);
       line(spacing * i - 40, -height / 32, spacing * i, height / 32);
@@ -233,7 +233,7 @@ function makeNumberLine() {
   for (let i = -lineNumber / 2; i < lineNumber / 2; i++) {
     noStroke();
     fill(0,100, 0);
-    text(`${i * 10} cm`, spacing * 2 * i + 8, height / 32 + 15);
+    text(`${i * 0.25} ly`, spacing * 2 * i + 8, height / 32 + 15);
     stroke(0, 100, 0);
     strokeWeight(1);
     line(2*spacing * i , height / 32 + 24, 2*spacing * i, height / 32+ 120);
