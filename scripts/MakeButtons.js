@@ -15,8 +15,8 @@ const makeButtons = () => {
     rewind = false;
     carVelocitySlider.elt.disabled = false;
     beltVelocitySlider.elt.disabled = false;
-    forwardButton.style('visibility', 'visible');
-    backwardButton.style('visibility', 'visible');
+    forwardButton.style('visibility', 'hidden');
+    backwardButton.style('visibility', 'hidden');
     loop();
   });
 

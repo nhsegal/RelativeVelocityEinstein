@@ -45,12 +45,12 @@ function createCar() {
 
   const move = (rewind) => {
     if (!rewind){
-      positionX = positionX + velocityX;
-      angle = angle + 0.0001 * sizeX * spinRate;
+      positionX = positionX + simRate*velocityX;
+      angle = angle + 0.0001 * sizeX * spinRate*simRate;
     }
     else {
-      positionX = positionX - velocityX;
-      angle = angle - 0.0001 * sizeX * spinRate;
+      positionX = positionX - simRate*velocityX;
+      angle = angle - 0.0001 * sizeX * spinRate*simRate;
     }
    
   };

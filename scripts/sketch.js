@@ -21,6 +21,7 @@ let beta2 = 0;
 let gamma2= 1;
 let carVel = 0;
 let rewind = false;
+let simRate = 2;
 
 // Load the image.
 function preload() {
@@ -55,9 +56,9 @@ function draw() {
     
   if (!paused){
     if(rewind){
-      clock--;
+      clock= clock-simRate;
     } else {
-      clock++;
+      clock= clock+simRate;
     }
   }
   
@@ -104,7 +105,7 @@ function draw() {
    beta1
   );
   belt.setVelocity(beta2);
-  car.setSpin(beta1);
+  car.setSpin(carVelocitySlider.value()/50);
   if (!paused){
     car.move(rewind);
     belt.move(rewind);
@@ -184,10 +185,10 @@ function createConveyorbelt() {
 
   const move = (rewind) => {
     if (!rewind){
-      positionX = positionX + velocityX;
+      positionX = positionX + simRate*velocityX;
     }
     else {
-      positionX = positionX - velocityX;
+      positionX = positionX - simRate*velocityX;
     }
 
   };
