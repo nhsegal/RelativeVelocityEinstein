@@ -3,9 +3,13 @@ const makeSliders = () => {
   carVelocitySlider.id('carslider')
   carVelocitySlider.parent('canvasDiv')
   carVelocitySlider.position(60, -2.43*height/5, 'relative');
-  
   carVelocitySlider.size(180);
   carVelocitySlider.value(0);
+  /*
+  carVelocitySlider.changed(() =>{
+  
+    console.log(beta1)
+  })  */
   describe('A dark gray square with a range slider at the top.');
 
   beltVelocitySlider = createSlider(-49, 49);

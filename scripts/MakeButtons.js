@@ -52,7 +52,7 @@ const makeButtons = () => {
   forwardButton.parent('canvasDiv');
   forwardButton.position(755, -205, 'relative');
   forwardButton.style(
-    "background: url('imgs/forward.png'); background-size:cover; border-radius: 8px"
+    "background: url('imgs/forwardstep.png'); background-size:cover; border-radius: 8px;visibility: hidden"
   );
   forwardButton.mousePressed(() => {
     rewind = false;
@@ -60,6 +60,9 @@ const makeButtons = () => {
     paused = false;
     draw();
     paused = true;
+    carVelocitySlider.elt.disabled = true;
+    beltVelocitySlider.elt.disabled = true;
+    loop();
   });
 
   backwardButton = createButton('');
@@ -68,7 +71,7 @@ const makeButtons = () => {
   backwardButton.parent('canvasDiv');
   backwardButton.position(675, -205, 'relative');
   backwardButton.style(
-    "background: url('imgs/backward.png'); background-size:cover; border-radius: 8px"
+    "background: url('imgs/backwardstep.png'); background-size:cover; border-radius: 8px; visibility: hidden"
   );
   backwardButton.mousePressed(() => {
     rewind = true;
@@ -77,5 +80,8 @@ const makeButtons = () => {
     draw();
     paused = true;
     rewind = false;
+    carVelocitySlider.elt.disabled = true;
+    beltVelocitySlider.elt.disabled = true;
+    loop();
   });
 };

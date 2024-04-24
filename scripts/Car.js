@@ -25,7 +25,7 @@ function createCar() {
     image(car_img, 0, 0, sizeX, sizeY);
     
     stroke(0)
-    for (let i = 0; i<17; i++){
+    for (let i = 0; i<13; i++){
       line(0, -100+i*10, 0, -100+i*10+5)
     }
     push();

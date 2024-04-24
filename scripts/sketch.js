@@ -15,11 +15,11 @@ let spacing;
 let clock;
 
 
-let beta1;
-let gamma1;
-let beta2;
-let gamma2;
-let carVel;
+let beta1= 0;
+let gamma1 =1;
+let beta2 = 0;
+let gamma2= 1;
+let carVel = 0;
 let rewind = false;
 
 // Load the image.
@@ -40,9 +40,6 @@ function setup() {
   belt = createConveyorbelt();
   makeButtons();
   makeSliders();
-  // Create a slider and place it at the top of the canvas.
-
-
   textFont('Arial');
   spacing = 75;
   clock = 0;
@@ -54,7 +51,8 @@ function draw() {
     gamma1 = 1/Math.sqrt(1-beta1*beta1)
     beta2 = beltVelocitySlider.value()/50
     gamma2 = 1/Math.sqrt(1-beta2*beta2)
-    console.log(clock)
+    console.log(beta1)
+    
   if (!paused){
     if(rewind){
       clock--;
@@ -62,9 +60,10 @@ function draw() {
       clock++;
     }
   }
+  
   frameRate(60)
   background(255);
-  makeNumberLine()
+
   fill(0)
   noStroke();
   textSize(20);
@@ -112,6 +111,7 @@ function draw() {
   }
 
   belt.display();
+  makeNumberLine();
   car.display();
 
   makeArrow(
@@ -174,7 +174,7 @@ function createConveyorbelt() {
     for (let i = -lineNumber / 2; i < lineNumber / 2; i++) {
       noStroke();
       fill(100);
-      text(`${i * .25} ly`, (spacing * 2 * i + 8), height / 32 + 15);
+      text(`${(i * .25).toFixed(2)} ly`, (spacing * 2 * i + 8), height / 32 + 15);
       stroke(1);
       strokeWeight(1);
       line(spacing * i - 40, -height / 32, spacing * i, height / 32);
@@ -215,10 +215,10 @@ function makeNumberLine() {
   for (let i = -lineNumber / 2; i < lineNumber / 2; i++) {
     noStroke();
     fill(0,100, 0);
-    text(`${i * 0.25} ly`, spacing * 2 * i + 8, height / 32 + 15);
+    text(`${(i * 0.25).toFixed(2)} ly`, spacing * 2 * i + 8, height / 32 + 15);
     stroke(0, 100, 0);
     strokeWeight(1);
-    line(2*spacing * i , height / 32 + 24, 2*spacing * i, height / 32+ 120);
+    line(2*spacing * i , height / 32 + 24, 2*spacing * i, height / 32+ 150);
   }
   pop() 
 }
