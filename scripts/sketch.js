@@ -21,7 +21,7 @@ let paused = true;
 let spacing;
 let clock;
 
-let testClock;
+//let testClock;
 
 
 let beta1= 0;
@@ -48,7 +48,7 @@ function setup() {
   textAlign(CENTER);
   car = createCar();
   belt = createConveyorbelt();
-  testClock = createClock(200,200,1, 0)
+  testClock = createClock(100,100,1, 0)
   makeButtons();
   makeSliders();
   textFont('Arial');
@@ -62,7 +62,7 @@ function draw() {
     gamma1 = 1/Math.sqrt(1-beta1*beta1)
     beta2 = beltVelocitySlider.value()/50
     gamma2 = 1/Math.sqrt(1-beta2*beta2)
-    console.log(beta1)
+
     
   if (!paused){
     if(rewind){
@@ -115,18 +115,17 @@ function draw() {
    beta1
   );
   belt.setVelocity(beta2);
-  testClock.setVelocity(beta2);
   car.setSpin(carVelocitySlider.value()/50);
   if (!paused){
     car.move(rewind);
     belt.move(rewind);
-    testClock.move(rewind)
+    //testClock.move(rewind)
   }
 
   belt.display();
   makeNumberLine();
   car.display();
-  testClock.display();
+ // testClock.display();
 
   makeArrow(
     200 * carVelocitySlider.value()/50,
