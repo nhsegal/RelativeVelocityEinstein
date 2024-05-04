@@ -21,7 +21,7 @@ let paused = true;
 let spacing;
 let clock;
 
-//let testClock;
+
 
 
 let beta1= 0;
@@ -48,7 +48,7 @@ function setup() {
   textAlign(CENTER);
   car = createCar();
   belt = createConveyorbelt();
-  testClock = createClock(100,100,1, 0, 0)
+
   makeButtons();
   makeSliders();
   textFont('Arial');
@@ -119,13 +119,13 @@ function draw() {
   if (!paused){
     car.move(rewind);
     belt.move(rewind);
-    //testClock.move(rewind)
+
   }
 
   belt.display();
   makeNumberLine();
   car.display();
- // testClock.display();
+
 
   makeArrow(
     200 * carVelocitySlider.value()/50,

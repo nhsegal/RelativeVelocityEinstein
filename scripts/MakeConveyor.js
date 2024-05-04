@@ -6,8 +6,9 @@ function createConveyorbelt() {
   let lineNumber = 900;
 
   let leftClock = createClock(-75*8,-200,1,0, 160) // spacing
-  let midClock = createClock(0,-200,1,0,160)
-  let rightClock = createClock(75*8,-200,1,0,160)
+  // leftClock x = -75*8 = - 600
+  let midClock = createClock(0,-200,1,160)
+  let rightClock = createClock(75*8,-200,1,160)
 
   const display = () => {
     textSize(18);
@@ -26,8 +27,8 @@ function createConveyorbelt() {
       line(spacing * i - 40, -height / 32, spacing * i, height / 32);
     }
     leftClock.display()
-    midClock.display()
-    rightClock.display()
+   // midClock.display()
+   // rightClock.display()
     pop();
   };
 
@@ -40,16 +41,11 @@ function createConveyorbelt() {
     }
     leftClock.move(rewind)
     midClock.move(rewind)
-   // rightClock.move(rewind)
+    rightClock.move(rewind)
   };
 
   const setVelocity = (val) => {
     velocityX = val;
-    leftClock.setRate(gamma2);
-    rightClock.setRate(gamma2);
-    console.log(gamma2)
-   //leftClock.setShift(val);
-   // rightClock.setShift(-val);
   };
 
   const reset = () => {

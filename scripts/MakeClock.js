@@ -1,30 +1,29 @@
-function createClock(x, y, rate, shift, color) {
+function createClock(x, y, rate, color) {
   let positionX = x;
   let positionY = y;
-  let reading = shift;
+  let reading = positionX*beta2;
   let clockRate = rate;
-
-
+ 
   const reset = () => {
     positionX = x;
     positionY = y;
-    reading = shift;
-    console.log(reading)
+   
+
   };
-  const setVelocity = (val) => {
-    velocityX = val;
-  };
+
+  /*
   const setShift = (val) => {
     reading = val;
+   
   };
+
   const setRate = (val) => {
     myRate = val;
   };
-
+*/
   const display = () => {
     push();
     translate(positionX, positionY);
-    //scale(1 / gamma2, 1);
     fill(255);
     stroke(color);
     rect(0, 0, 120, 40, 10);
@@ -38,11 +37,9 @@ function createClock(x, y, rate, shift, color) {
 
   const move = (rewind) => {
     if (!rewind) {
-    // positionX = positionX + simRate * velocityX;
-      reading = reading + simRate * clockRate / gamma2;
+      reading = reading + simRate * clockRate / gamma2 + x*beta2;
     } else {
-   //   positionX = positionX - simRate * velocityX;
-      reading = reading - simRate * clockRate / gamma2;
+      reading = reading - simRate * clockRate / gamma2 + x*beta2;
     }
   };
 
@@ -50,5 +47,5 @@ function createClock(x, y, rate, shift, color) {
     return positionX;
   };
 
-  return { display, move, reset, setVelocity, reportPosition, setShift, setRate };
+  return { display, move, reset,  reportPosition };
 }
