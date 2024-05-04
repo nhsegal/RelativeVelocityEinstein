@@ -10,7 +10,7 @@ function createConveyorbelt() {
   let rightClock = createClock(75*8,-200,1,160)
 
   const display = () => {
-    textSize(18);
+    textSize(22);
     fill(200);
     noStroke();
     push();
@@ -18,12 +18,16 @@ function createConveyorbelt() {
     scale(1/gamma2,1)
     rect(-positionX, 0, width * 80, height / 16);
     for (let i = -lineNumber / 2; i < lineNumber / 2; i++) {
-      noStroke();
-      fill(100);
-      text(`${(i * .25).toFixed(2)} ly`, (spacing * 2 * i + 8), height / 32 + 15);
-      stroke(1);
+      stroke(160);
       strokeWeight(1);
-      line(spacing * i - 40, -height / 32, spacing * i, height / 32);
+      line(spacing*.8 * i - 40, -height / 32, spacing*.8 * i, height / 32);
+      stroke(1);
+      line(spacing*.8 * i, height / 32, spacing*.8 * i, height / 32 -10);
+      if (i%5 === 0) {
+        noStroke();
+        fill(100);
+        text(`${(i/10 ).toFixed(1)} ly`, (spacing *.8 * i + 25), height / 32 + 18);
+      }
     }
     leftClock.display()
     midClock.display()

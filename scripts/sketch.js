@@ -171,18 +171,23 @@ function draw() {
 
 
 function makeNumberLine() {
-  //let spacing = 80;
-  let lineNumber = 20;
-  textSize(18)
+
+  let lineNumber = 200;
+  textSize(22)
   push()
   translate(width/2, height/4)
   for (let i = -lineNumber / 2; i < lineNumber / 2; i++) {
-    noStroke();
-    fill(0,100, 0);
-    text(`${(i * 0.25).toFixed(2)} ly`, spacing * 2 * i + 8, height / 32 + 15);
+    
     stroke(0, 100, 0);
     strokeWeight(1);
-    line(2*spacing * i , height / 32 + 24, 2*spacing * i, height / 32+ 150);
+    line(.8*spacing * i , height / 32 + 24, .8*spacing * i, height / 32+ 50);
+    if (i%5 === 0){
+      line(.8*spacing * i , height / 32 + 24, .8*spacing * i, height / 32+ 150);
+      noStroke();
+    fill(0,100, 0);
+    text(`${(i * 1/10).toFixed(1)} ly`, .8* spacing  * i + 25, height / 32 + 15);
+    }
+    //line(2*spacing * i , height / 32 + 24, 2*spacing * i, height / 32+ 150);
   }
   pop() 
 }
