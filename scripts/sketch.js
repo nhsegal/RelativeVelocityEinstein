@@ -1,8 +1,8 @@
 /*
 To do:
 -clocks on the converyor belt
+-if shift is set, clock can't run
 -checkbox for vectors
-
 */
 
 let car_img;
@@ -48,7 +48,7 @@ function setup() {
   textAlign(CENTER);
   car = createCar();
   belt = createConveyorbelt();
-  testClock = createClock(100,100,1, 0)
+  testClock = createClock(100,100,1, 0, 0)
   makeButtons();
   makeSliders();
   textFont('Arial');
@@ -130,7 +130,7 @@ function draw() {
   makeArrow(
     200 * carVelocitySlider.value()/50,
     car.reportPosition(),
-    height / 12 + 50,
+    height / 12 + 80,
     1,
     0,
     color(200, 0, 0)
@@ -138,7 +138,7 @@ function draw() {
   makeArrow(
     200 * beltVelocitySlider.value()/50,
     car.reportPosition(),
-     1.35*height / 12 + 50,
+     1.35*height / 12 + 80,
     1,
     0,
     color(120, 120, 120)
@@ -146,7 +146,7 @@ function draw() {
   makeArrow(
     200 * beta1,
     car.reportPosition(),
-    1.7*height/12 + 50,
+    1.7*height/12 + 80,
     1,
     0,
     color(0, 100, 0)

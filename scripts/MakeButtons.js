@@ -10,6 +10,7 @@ const makeButtons = () => {
   resetButton.mousePressed(() => {
     car.reset();
     belt.reset();
+
     clock = 0;
     paused = true;
     rewind = false;
