@@ -11,17 +11,9 @@ function createClock(x, y, rate, color) {
 
   };
 
-  /*
-  const setShift = (val) => {
-    reading = val;
-   
-  };
 
-  const setRate = (val) => {
-    myRate = val;
-  };
-*/
   const display = () => {
+    
     push();
     translate(positionX, positionY);
     fill(255);
@@ -30,16 +22,16 @@ function createClock(x, y, rate, color) {
     fill(color);
     textSize(26);
     textAlign(CENTER);
-    text(`${(reading / 600).toFixed(3)} yr`, 0, 10);
+    text(`${((reading - positionX*beta2*gamma2)/ 600).toFixed(3)} yr`, 0, 10);
     line(0,20,0,220)
     pop();
   };
 
   const move = (rewind) => {
     if (!rewind) {
-      reading = reading + simRate * clockRate / gamma2 + x*beta2;
+      reading = reading + simRate * clockRate / gamma2// + x*beta2;
     } else {
-      reading = reading - simRate * clockRate / gamma2 + x*beta2;
+      reading = reading - simRate * clockRate / gamma2 //+ x*beta2;
     }
   };
 

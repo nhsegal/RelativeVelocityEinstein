@@ -6,7 +6,6 @@ function createConveyorbelt() {
   let lineNumber = 900;
 
   let leftClock = createClock(-75*8,-200,1,0, 160) // spacing
-  // leftClock x = -75*8 = - 600
   let midClock = createClock(0,-200,1,160)
   let rightClock = createClock(75*8,-200,1,160)
 
@@ -27,8 +26,8 @@ function createConveyorbelt() {
       line(spacing * i - 40, -height / 32, spacing * i, height / 32);
     }
     leftClock.display()
-   // midClock.display()
-   // rightClock.display()
+    midClock.display()
+    rightClock.display()
     pop();
   };
 
