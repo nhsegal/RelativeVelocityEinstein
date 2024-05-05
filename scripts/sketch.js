@@ -9,10 +9,8 @@ let car_img;
 let wheel_img;
 let car;
 let carVelocitySlider;
-
 let belt;
 let beltVelocitySlider;
-
 let resetButton;
 let playButton;
 let forwardButton;
@@ -20,7 +18,9 @@ let backwardButton;
 let paused = true;
 let spacing;
 let clock;
-
+let showclockscheckbox;
+let showdistancecheckbox;
+let showvectorscheckbox;
 
 
 
@@ -51,6 +51,7 @@ function setup() {
 
   makeButtons();
   makeSliders();
+  makeCheckboxes();
   textFont('Arial');
   spacing = 75;
   clock = 0;
