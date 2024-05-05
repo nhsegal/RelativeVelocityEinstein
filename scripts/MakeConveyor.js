@@ -5,7 +5,7 @@ function createConveyorbelt() {
   let velocityX = 0;
   let lineNumber = 900;
 
-  let leftClock = createClock(-75*8,-200,1,0, 160) // spacing
+  let leftClock = createClock(-75*8,-200,1, 160) // spacing
   let midClock = createClock(0,-200,1,160)
   let rightClock = createClock(75*8,-200,1,160)
 
@@ -26,7 +26,7 @@ function createConveyorbelt() {
       if (i%5 === 0) {
         noStroke();
         fill(100);
-        text(`${(i/10 ).toFixed(1)} ly`, (spacing *.8 * i + 25), height / 32 + 18);
+        text(`${(i/10 ).toFixed(1)} ly`, (spacing *.8 * i + 25), height / 32 + 24);
       }
     }
     leftClock.display()

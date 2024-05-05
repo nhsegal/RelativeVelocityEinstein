@@ -7,13 +7,14 @@ function createClock(x, y, rate, color) {
   const reset = () => {
     positionX = x;
     positionY = y;
-   
+    beta1 = 0;
+    beta2 = 0;
+    reading = positionX*beta2;
 
   };
 
 
   const display = () => {
-    
     push();
     translate(positionX, positionY);
     fill(255);

@@ -154,14 +154,14 @@ function draw() {
 
   fill(255);
   stroke(0)
-  rect(4.1 *width/5, height-210, 150, 50, 10)
+  rect(width/2, 40, 150, 50, 10)
   fill(0)
   textSize(36)
   textAlign(CENTER)
   text(
     `${(clock/600 ).toFixed(3)} yr`,
-    4.1*width / 5,
-    ( height) -200
+    width / 2,
+    50
   );
   
 
@@ -177,17 +177,16 @@ function makeNumberLine() {
   push()
   translate(width/2, height/4)
   for (let i = -lineNumber / 2; i < lineNumber / 2; i++) {
-    
     stroke(0, 100, 0);
     strokeWeight(1);
-    line(.8*spacing * i , height / 32 + 24, .8*spacing * i, height / 32+ 50);
+    line(.8*spacing * i , height / 32 +50, .8*spacing * i, height / 32+ 100);
     if (i%5 === 0){
       line(.8*spacing * i , height / 32 + 24, .8*spacing * i, height / 32+ 150);
       noStroke();
     fill(0,100, 0);
     text(`${(i * 1/10).toFixed(1)} ly`, .8* spacing  * i + 25, height / 32 + 15);
     }
-    //line(2*spacing * i , height / 32 + 24, 2*spacing * i, height / 32+ 150);
+   
   }
   pop() 
 }
