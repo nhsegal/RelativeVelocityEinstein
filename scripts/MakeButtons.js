@@ -1,16 +1,12 @@
 const makeButtons = () => {
   resetButton = createButton('');
-  resetButton.size(80, 80);
+  resetButton.size(160, 80);
   resetButton.id('resetbutton');
   resetButton.parent('canvasDiv');
-  resetButton.position(975, -245, 'relative');
-  resetButton.style(
-    "background: url('imgs/reset.png'); background-size:cover; border-radius: 8px"
-  );
+  resetButton.position(618, -145, 'relative');
   resetButton.mousePressed(() => {
     car.reset();
     belt.reset();
-
     clock = 0;
     paused = true;
     rewind = false;
@@ -22,13 +18,11 @@ const makeButtons = () => {
   });
 
   playButton = createButton('');
-  playButton.size(80, 80);
+  playButton.size(160, 80);
   playButton.id('playbutton');
   playButton.parent('canvasDiv');
-  playButton.position(790, -245, 'relative');
-  playButton.style(
-    "background: url('imgs/playpause.png'); background-size:cover; background-color:#90d090; border-radius: 8px"
-  );
+  playButton.position(710, -245, 'relative');
+
   playButton.mousePressed(() => {
     if (paused) {
       playButton.style('background-color:#f0a0a0');

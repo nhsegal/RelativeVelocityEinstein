@@ -1,7 +1,7 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  
 }
 main {
   display: flex;
@@ -13,5 +13,28 @@ canvas {
   display: flex;
 }
 
+#resetbutton {
+  background: url('imgs/reset.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 8px;
+  background-color: #ffffa6;
+}
 
+#resetbutton:hover {
+  background-color: #ffff00;
+}
 
+#playbutton{
+  background: url('imgs/playpause.png'); 
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color:#90d090; 
+  border-radius: 8px;
+}
+
+#resetbutton:hover {
+  background-color: #ffff00;
+}
