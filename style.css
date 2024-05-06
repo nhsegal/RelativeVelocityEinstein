@@ -20,10 +20,12 @@ canvas {
   background-position: center center;
   border-radius: 8px;
   background-color: #ffffa6;
+  box-shadow: 5px 5px #999;
 }
 
 #resetbutton:hover {
   background-color: #ffff00;
+
 }
 
 #playbutton{
@@ -33,8 +35,16 @@ canvas {
   background-position: center center;
   background-color:#90d090; 
   border-radius: 8px;
+  box-shadow: 5px 5px #999;
+
 }
 
 #resetbutton:hover {
   background-color: #ffff00;
+ 
+}
+
+#resetbutton:active, #playbutton:active {
+  box-shadow: 1px 1px #666;
+  transform: translateY(4px);
 }
