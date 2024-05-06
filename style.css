@@ -20,12 +20,15 @@ canvas {
   background-position: center center;
   border-radius: 8px;
   background-color: #ffffa6;
-  box-shadow: 5px 5px #999;
+  box-shadow: 3px 4px #999;
 }
 
 #resetbutton:hover {
   background-color: #ffff00;
+}
 
+#resetbutton:hover {
+  background-color: #ffff00;
 }
 
 #playbutton{
@@ -35,16 +38,33 @@ canvas {
   background-position: center center;
   background-color:#90d090; 
   border-radius: 8px;
-  box-shadow: 5px 5px #999;
-
+  box-shadow: 3px 4px #999;
 }
 
-#resetbutton:hover {
-  background-color: #ffff00;
- 
-}
 
-#resetbutton:active, #playbutton:active {
+
+#resetbutton:active, #playbutton:active, 
+#backwardbutton:active, #forwardbutton:active {
   box-shadow: 1px 1px #666;
-  transform: translateY(4px);
+  transform: translateY(3px);
+}
+
+#backwardbutton {
+    background: url('imgs/backwardstep.png'); 
+    background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+    border-radius: 8px; 
+    visibility: hidden;
+    box-shadow: 3px 4px #999;
+}
+
+#forwardbutton {
+  background: url('imgs/forwardstep.png'); 
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 8px; 
+  visibility: hidden;
+  box-shadow: 3px 4px #999;
 }

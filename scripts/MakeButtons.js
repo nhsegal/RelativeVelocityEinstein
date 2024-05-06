@@ -42,13 +42,11 @@ const makeButtons = () => {
   });
 
   forwardButton = createButton('');
-  forwardButton.size(35, 35);
+  forwardButton.size(70, 35);
   forwardButton.id('forwardbutton');
   forwardButton.parent('canvasDiv');
-  forwardButton.position(755, -205, 'relative');
-  forwardButton.style(
-    "background: url('imgs/forwardstep.png'); background-size:cover; border-radius: 8px;visibility: hidden"
-  );
+  forwardButton.position(640, -205, 'relative');
+ 
   forwardButton.mousePressed(() => {
     rewind = false;
     noLoop();
@@ -61,13 +59,10 @@ const makeButtons = () => {
   });
 
   backwardButton = createButton('');
-  backwardButton.size(35, 35);
-  backwardButton.id('backwardButton');
+  backwardButton.size(70, 35);
+  backwardButton.id('backwardbutton');
   backwardButton.parent('canvasDiv');
-  backwardButton.position(675, -205, 'relative');
-  backwardButton.style(
-    "background: url('imgs/backwardstep.png'); background-size:cover; border-radius: 8px; visibility: hidden"
-  );
+  backwardButton.position(480, -205, 'relative');
   backwardButton.mousePressed(() => {
     rewind = true;
     noLoop();
