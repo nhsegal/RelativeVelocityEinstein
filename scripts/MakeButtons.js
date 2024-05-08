@@ -20,19 +20,22 @@ const makeButtons = () => {
   playButton = createButton('');
   playButton.size(160, 80);
   playButton.id('playbutton');
+  playButton.addClass('paused');
   playButton.parent('canvasDiv');
   playButton.position(710, -245, 'relative');
 
   playButton.mousePressed(() => {
     if (paused) {
-      playButton.style('background-color:#f0a0a0');
+      playButton.removeClass('paused');
+      playButton.addClass('unpaused');
       paused = false;
       carVelocitySlider.elt.disabled = true;
       beltVelocitySlider.elt.disabled = true;
       forwardButton.style('visibility', 'hidden');
       backwardButton.style('visibility', 'hidden');
     } else {
-      playButton.style('background-color:#90d090');
+      playButton.removeClass('unpaused');
+      playButton.addClass('paused');
       paused = true;
       carVelocitySlider.elt.disabled = false;
       beltVelocitySlider.elt.disabled = false;
