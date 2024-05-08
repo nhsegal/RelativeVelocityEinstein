@@ -7,8 +7,8 @@ const makeCheckboxes = () => {
   showdistancecheckbox.parent('canvasDiv')
   showdistancecheckbox.addClass('checkbox')
   showdistancecheckbox.position(40,-655, 'relative')
-  showvectorscheckbox = createCheckbox('Velocity Vectors')
+  showvectorscheckbox = createCheckbox('Show Velocity Vectors')
   showvectorscheckbox.parent('canvasDiv')
-  showvectorscheckbox.position(1240,-690, 'relative')
+  showvectorscheckbox.position(1220,-700, 'relative')
   showvectorscheckbox.addClass('checkbox')
 }

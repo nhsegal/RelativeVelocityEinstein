@@ -23,15 +23,21 @@ function createConveyorbelt() {
       line(spacing*.8 * i - 40, -height / 32, spacing*.8 * i, height / 32);
       stroke(1);
       line(spacing*.8 * i, height / 32, spacing*.8 * i, height / 32 -10);
-      if (i%5 === 0) {
-        noStroke();
-        fill(100);
-        text(`${(i/10 ).toFixed(1)} ly`, (spacing *.8 * i + 25), height / 32 + 24);
+      if (showdistancecheckbox.checked()){
+        if (i%5 === 0) {
+          noStroke();
+          fill(100);
+          text(`${(i/10 ).toFixed(1)} ly`, (spacing *.8 * i + 25), height / 32 + 24);
+        }
       }
+
     }
-    leftClock.display()
-    midClock.display()
-    rightClock.display()
+    if (showclockscheckbox.checked()){
+      leftClock.display()
+       midClock.display()
+      rightClock.display()
+    }
+   
     pop();
   };
 

@@ -127,7 +127,7 @@ function draw() {
   makeNumberLine();
   car.display();
 
-
+if (showvectorscheckbox.checked()){
   makeArrow(
     200 * carVelocitySlider.value()/50,
     car.reportPosition(),
@@ -152,6 +152,8 @@ function draw() {
     0,
     color(0, 100, 0)
   );
+}
+
 
   fill(255);
   stroke(0)
