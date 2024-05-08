@@ -2,7 +2,7 @@ const makeSliders = () => {
   carVelocitySlider = createSlider(-49, 49);
   carVelocitySlider.id('carslider')
   carVelocitySlider.parent('canvasDiv')
-  carVelocitySlider.position(-180, -2.43*height/5, 'relative');
+  carVelocitySlider.position(-176, -2.43*height/5, 'relative');
   carVelocitySlider.size(180);
   carVelocitySlider.value(0);
 

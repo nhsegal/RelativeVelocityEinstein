@@ -131,7 +131,7 @@ function draw() {
   makeArrow(
     200 * carVelocitySlider.value()/50,
     car.reportPosition(),
-    height / 12 + 80,
+    height / 12 + 144,
     1,
     0,
     color(200, 0, 0)
@@ -139,7 +139,7 @@ function draw() {
   makeArrow(
     200 * beltVelocitySlider.value()/50,
     car.reportPosition(),
-     1.35*height / 12 + 80,
+     1.35*height / 12 + 144,
     1,
     0,
     color(120, 120, 120)
@@ -147,7 +147,7 @@ function draw() {
   makeArrow(
     200 * beta1,
     car.reportPosition(),
-    1.7*height/12 + 80,
+    1.7*height/12 + 144,
     1,
     0,
     color(0, 100, 0)
@@ -185,7 +185,7 @@ function makeNumberLine() {
       line(.8*spacing * i , height / 32 + 24, .8*spacing * i, height / 32+ 150);
       noStroke();
     fill(0,100, 0);
-    text(`${(i * 1/10).toFixed(1)} ly`, .8* spacing  * i + 25, height / 32 + 15);
+    text(`${(i * 1/10).toFixed(1)} ly`, .8* spacing  * i + 25, height / 32 + 10);
     }
    
   }

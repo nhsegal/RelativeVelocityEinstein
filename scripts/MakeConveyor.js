@@ -5,9 +5,9 @@ function createConveyorbelt() {
   let velocityX = 0;
   let lineNumber = 900;
 
-  let leftClock = createClock(-75*8,-200,1, 160) // spacing
-  let midClock = createClock(0,-200,1,160)
-  let rightClock = createClock(75*8,-200,1,160)
+  let leftClock = createClock(-75*8,-190,1, 160) // spacing
+  let midClock = createClock(0,-190,1,160)
+  let rightClock = createClock(75*8,-190,1,160)
 
   const display = () => {
     textSize(22);
