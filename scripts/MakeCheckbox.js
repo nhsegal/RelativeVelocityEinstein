@@ -11,4 +11,7 @@ const makeCheckboxes = () => {
   showvectorscheckbox.parent('canvasDiv')
   showvectorscheckbox.position(1220,-700, 'relative')
   showvectorscheckbox.addClass('checkbox')
+
+  showdistancecheckbox.checked(true)
+  showclockscheckbox.checked(true)
 }

@@ -1,7 +1,7 @@
 function createClock(x, y, rate, color) {
   let positionX = x;
   let positionY = y;
-  let reading = positionX*beta2;
+  let reading = positionX*beta2/gamma2;
   let clockRate = rate;
  
   const reset = () => {
@@ -9,7 +9,7 @@ function createClock(x, y, rate, color) {
     positionY = y;
     beta1 = 0;
     beta2 = 0;
-    reading = positionX*beta2;
+    reading = positionX*beta2/gamma2;
 
   };
 
@@ -23,7 +23,10 @@ function createClock(x, y, rate, color) {
     fill(color);
     textSize(26);
     textAlign(CENTER);
-    text(`${((reading - positionX*beta2/gamma2)/ 600).toFixed(3)} yr`, 0, 10);
+    //text(`${((reading - positionX*beta2/Math.sqrt(1-beta2*beta2))/ 600).toFixed(3)} yr`, 0, 10);
+    text(`${((reading- positionX*beta2)/ 600).toFixed(3)} yr`, 0, 10);
+    // 1/Math.sqrt(1-beta2*beta2)
+
     line(0,20,0,220)
     pop();
   };

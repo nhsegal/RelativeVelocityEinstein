@@ -112,9 +112,7 @@ function draw() {
   textSize(20);
   text('Car Velocity Relative to Ground', (2.16 * width) / 4  , (3.6 * height) / 5);
   
-  car.setVelocity(
-   beta1
-  );
+  car.setVelocity(beta1);
   belt.setVelocity(beta2);
   car.setSpin(carVelocitySlider.value()/50);
   if (!paused){
