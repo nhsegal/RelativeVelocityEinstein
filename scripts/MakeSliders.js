@@ -14,6 +14,6 @@ const makeSliders = () => {
   beltVelocitySlider.position(-360, -2.23*height/5, 'relative');
 
   beltVelocitySlider.size(180);
-  beltVelocitySlider.value(-30);
+  beltVelocitySlider.value(0);
   describe('A dark gray square with a range slider at the top.');
 }

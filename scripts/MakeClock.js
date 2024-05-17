@@ -23,10 +23,7 @@ function createClock(x, y, rate, color) {
     fill(color);
     textSize(26);
     textAlign(CENTER);
-    //text(`${((reading - positionX*beta2/Math.sqrt(1-beta2*beta2))/ 600).toFixed(3)} yr`, 0, 10);
     text(`${((reading- positionX*beta2)/ 600).toFixed(3)} yr`, 0, 10);
-    // 1/Math.sqrt(1-beta2*beta2)
-
     line(0,20,0,220)
     pop();
   };

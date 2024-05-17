@@ -14,4 +14,5 @@ const makeCheckboxes = () => {
 
   showdistancecheckbox.checked(true)
   showclockscheckbox.checked(true)
+  showvectorscheckbox.checked(true)
 }
